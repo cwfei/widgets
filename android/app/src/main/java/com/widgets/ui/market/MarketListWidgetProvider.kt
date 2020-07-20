@@ -1,4 +1,4 @@
-package com.widgets.ui.marketlist
+package com.widgets.ui.market
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider

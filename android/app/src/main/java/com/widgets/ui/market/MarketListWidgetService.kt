@@ -1,4 +1,4 @@
-package com.widgets.ui.marketlist
+package com.widgets.ui.market
 
 import android.content.Intent
 import android.widget.RemoteViewsService

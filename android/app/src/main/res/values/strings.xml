@@ -2,4 +2,7 @@
     <string name="app_name">Widgets</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="top_ten_coins">Top-10 Coins</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="coin_ticker">Coin Ticker</string>
 </resources>
