@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".ui.ticker.CoinTickerWidget"
+            android:name=".ui.ticker.CoinTickerWidgetProvider"
             android:label="@string/coin_ticker">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

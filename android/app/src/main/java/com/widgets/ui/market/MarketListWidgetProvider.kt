@@ -23,8 +23,7 @@ class MarketListWidgetProvider : AppWidgetProvider() {
             val intent = Intent(context, MarketListWidgetService::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME));
-            val views =
-                RemoteViews(context.packageName, R.layout.market_list_widget)
+            val views = RemoteViews(context.packageName, R.layout.market_list_widget)
             views.setRemoteAdapter(R.id.listView, intent)
 
             // Instruct the widget manager to update the widget

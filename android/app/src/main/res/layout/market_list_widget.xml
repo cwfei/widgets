@@ -15,7 +15,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:src="@drawable/img_coingecko"
             tools:ignore="ContentDescription" />
