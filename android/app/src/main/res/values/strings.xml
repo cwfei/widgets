@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Widgets</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="top_ten_coins">Top-10 Coins</string>
 </resources>
