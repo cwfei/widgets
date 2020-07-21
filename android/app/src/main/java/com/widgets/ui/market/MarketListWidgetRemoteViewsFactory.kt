@@ -3,6 +3,7 @@ package com.widgets.ui.market
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.bumptech.glide.Glide
@@ -79,5 +80,6 @@ class MarketListWidgetRemoteViewsFactory constructor(
 
     override fun onDataSetChanged() {
         items = DataStore.fetchCoins()
+        Log.d("CoinTicker", "onDataSetChanged")
     }
 }

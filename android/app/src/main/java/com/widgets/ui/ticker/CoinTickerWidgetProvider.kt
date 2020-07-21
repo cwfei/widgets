@@ -1,8 +1,10 @@
 package com.widgets.ui.ticker
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.widget.RemoteViews
@@ -10,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.widgets.R
 import com.widgets.ui.service.DataStore
 import com.widgets.ui.service.FormatterService
-import com.widgets.ui.service.store
 
 /**
  * Implementation of App Widget functionality.
@@ -26,6 +27,19 @@ class CoinTickerWidgetProvider : AppWidgetProvider() {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
+    }
+
+    override fun onReceive(context: Context, intent: Intent?) {
+        super.onReceive(context, intent)
+
+        val appWidgetId = intent?.getIntExtra(
+            AppWidgetManager.EXTRA_APPWIDGET_ID,
+            AppWidgetManager.INVALID_APPWIDGET_ID
+        )
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        Log.d("CoinTicker", "onReceived: ${appWidgetId}")
+        updateAppWidget(context, appWidgetManager, appWidgetId!!)
+
     }
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
@@ -86,6 +100,19 @@ internal fun updateAppWidget(
             R.id.priceChangePercentage24hTextView,
             FormatterService.percentageFormatter.format(coin.marketData.priceChangePercentage24h.usd)
         )
+
+        val intent = Intent(context, CoinTickerWidgetProvider::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        Log.d("CoinTicker", "Setting pending intent, ${appWidgetId}")
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            appWidgetId,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        views.setOnClickPendingIntent(R.id.refreshButton, pendingIntent)
 
         // Instruct the widget manager to update the widget.
         appWidgetManager.updateAppWidget(appWidgetId, views)
